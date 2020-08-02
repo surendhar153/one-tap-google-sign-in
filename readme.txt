@@ -1,4 +1,4 @@
-=== Google One Tap Sign in ===
+=== One Tap Google Sign in ===
 Contributors: surendhar153
 Donate link: https://paypal.me/surendhar153
 Tags: google, one tap, social login, login, signup, yolo, you only login once
