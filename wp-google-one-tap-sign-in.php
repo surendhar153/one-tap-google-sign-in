@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Google One Tap Sign in
-Plugin URI: https://github.com/surendhar153/google-one-tap-login
+Plugin URI: https://github.com/surendhar153/wp-google-one-tap-sign-in
 Description: Google One Tap Login for wordpress
 Author: S.E.Surendhar
 Author URI: https://www.linkedin.com/surendhar153/
