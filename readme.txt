@@ -5,7 +5,7 @@ Tags: google, one tap, social login, login, signup, yolo, you only login once
 Requires at least: 5.1
 Tested up to: 5.2
 Requires PHP: 7.2
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -45,7 +45,11 @@ New user registration user role is defined in the 'New User Default Role' field 
 Automatic sign-in is currently not enabled. You can look for this feature in the upcoming release
  
 == Changelog ==
- 
+
+= 1.1 =
+* Updating User Firstname Lastname and getting profile picture for future use
+* Added security fixes sanitize input and output
+
 = 1.0 =
 * Added Lisence and added guidlines for wordpress plugin repository
  
