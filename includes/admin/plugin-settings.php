@@ -23,10 +23,9 @@ add_action( 'admin_menu', 'wpdocs_register_my_custom_menu_page' );
 function gotl_plugin_settings_page(){
     if ($_POST && wp_verify_nonce($_POST['_wpnonce'], 'gotl-admin-settings') ) {
         $admin_settings = array();
-        $admin_settings['googleclientid'] = $_POST['googleclientid'];
+        $admin_settings['googleclientid'] = sanitize_text_field($_POST['googleclientid']);
 
         update_option('gotl_admin_settings', $admin_settings);
     }
-	$gotl_settings = '';
 	include GOTL_PLUGIN_INCLUDES_PATH . '/admin/templates/plugin-settings.php';
 }
