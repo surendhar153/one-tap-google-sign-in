@@ -1,11 +1,11 @@
 === One Tap Google Sign in ===
 Contributors: surendhar153
-Donate link: https://paypal.me/surendhar153
+Donate link: https://bit.ly/paypal-surendhar153
 Tags: google, one tap, social login, login, signup, yolo, you only login once
 Requires at least: 5.1
-Tested up to: 5.2
-Requires PHP: 7.2
-Stable tag: 1.1
+Tested up to: 5.5
+Requires PHP: 7.0
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -27,8 +27,8 @@ Allows users to add Google One Tap Sign-in Or Sign-up to wordpress website.
 
 == Dependencies ==
 
-1. Wordpress v4.8.13 and later
-2. PHP v5.6.0 and later
+1. Wordpress v5.1 and later
+2. PHP v7.0 and later
 
 == Frequently Asked Questions ==
  
@@ -45,6 +45,10 @@ New user registration user role is defined in the 'New User Default Role' field 
 Automatic sign-in is currently not enabled. You can look for this feature in the upcoming release
  
 == Changelog ==
+
+= 1.1.2 =
+* Updating User Firstname Lastname and getting profile picture for future use
+* Added security fixes sanitize input and output
 
 = 1.1 =
 * Updating User Firstname Lastname and getting profile picture for future use
