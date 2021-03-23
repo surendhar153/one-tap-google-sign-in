@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-function wpdocs_register_my_custom_menu_page(){
+function one_tap_google_sign_in_settings_page(){
     add_menu_page( 
         __( 'Google One Tap', 'google-one-tap-login' ),
         'Google One Tap',
@@ -15,7 +15,7 @@ function wpdocs_register_my_custom_menu_page(){
         80
     ); 
 }
-add_action( 'admin_menu', 'wpdocs_register_my_custom_menu_page' );
+add_action( 'admin_menu', 'one_tap_google_sign_in_settings_page' );
  
 /**
  * Display a custom menu page
