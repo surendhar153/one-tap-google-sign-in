@@ -4,6 +4,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 $gotl_options = get_option( 'gotl_admin_settings' );
+
+$googleclientid = "";
+if ($gotl_options) {
+	$googleclientid = $gotl_options['googleclientid'];
+}
 ?>
 <style type="text/css">
 	.donate-image{
@@ -21,7 +26,7 @@ $gotl_options = get_option( 'gotl_admin_settings' );
 		<?php wp_nonce_field( "gotl-admin-settings" );?>
 		<tr>
 			<th scope="row"><label for="googleclientid">Google Client ID</label></th>
-			<td><input name="googleclientid" type="text" id="googleclientid" value="<?php echo esc_attr($gotl_options['googleclientid']);?>" class="regular-text" /></td>
+			<td><input name="googleclientid" type="text" id="googleclientid" value="<?php echo esc_attr($googleclientid);?>" class="regular-text" /></td>
 		</tr>
 		<?php submit_button(); ?>
 	</form>
