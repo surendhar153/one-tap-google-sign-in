@@ -10,6 +10,7 @@ class GOTL {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 50 );
 		add_action( 'wp_footer', array( $this, 'gotl_one_tap_widget' ), 50 );
 		add_action( 'init', array( $this, 'gotl_widget_endpoint' ) );
+		add_action( 'init', array( $this, 'shortcodes' ) );
 	}
 
 	/**
@@ -36,6 +37,25 @@ class GOTL {
 			</div>
 			<?php
 		}
+	}
+
+	public function shortcodes() {
+		add_shortcode( 'gotl_google_login_button', array( $this, 'gotl_google_login_button_func' ) );
+	}
+
+	public function gotl_google_login_button_func(){
+		if ( !is_user_logged_in() ) {
+			$html = '<div class="g_id_signin"
+			data-type="standard"
+			data-shape="rectangular"
+			data-theme="outline"
+			data-text="continue_with"
+			data-size="large"
+			data-logo_alignment="left">
+			</div>';
+			return $html;
+		}
+		return '';
 	}
 
 	public function gotl_widget_endpoint(){
