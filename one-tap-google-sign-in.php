@@ -5,7 +5,7 @@ Plugin URI: https://bit.ly/one-tap-google-sign-in-for-wordpress
 Description: One Tap Google Sign in for wordpress
 Author: S.E.Surendhar
 Author URI: https://bit.ly/surendhar-linkedin
-Version: 1.1.4
+Version: 1.1.5
 */
 
 // If this file is called directly, abort.
