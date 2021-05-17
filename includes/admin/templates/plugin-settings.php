@@ -11,6 +11,9 @@ $enable_wc_login_button = isset($gotl_options['enable_wc_login_button'])? $gotl_
 
 ?>
 <style type="text/css">
+	form.gotl-admin-settings-form table th {
+		text-align: left;
+	}
 	.donate-image{
 		width: auto;
 		height: 300px;
@@ -22,7 +25,7 @@ $enable_wc_login_button = isset($gotl_options['enable_wc_login_button'])? $gotl_
 <div class="wrap">
 	<h1>Google One Tap Login</h1>
 	<p>Version: <?php echo esc_html(GOTL_VERSION); ?></p>
-	<form method="POST">
+	<form method="POST" class="gotl-admin-settings-form">
 		<?php wp_nonce_field( "gotl-admin-settings" );?>
 		<table>
 		<tr>
