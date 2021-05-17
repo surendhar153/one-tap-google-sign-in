@@ -7,9 +7,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 class GOTL {
 
 	public function __construct() {
+		$gotl_options = get_option( 'gotl_admin_settings' );
+
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 50 );
 		add_action( 'wp_footer', array( $this, 'gotl_one_tap_widget' ), 50 );
+		add_action( 'login_footer', array( $this, 'gotl_one_tap_widget' ), 50 );
+		add_action( 'login_footer', array( $this, 'wp_login_script' ), 50 );
 		add_action( 'init', array( $this, 'gotl_widget_endpoint' ) );
+		add_action( 'init', array( $this, 'shortcodes' ) );
+		add_action( 'login_enqueue_scripts', array( $this, 'enqueue_scripts' ), 1 );
+		if ($gotl_options && isset($gotl_options['enable_wp_login_button']) && $gotl_options['enable_wp_login_button']=="yes") {
+			add_action( 'login_form', array( $this, 'wp_login_google_login_button' ) ) ;
+		}
+		if ($gotl_options && isset($gotl_options['enable_wc_login_button']) && $gotl_options['enable_wc_login_button']=="yes") {
+			add_action( 'woocommerce_login_form_start', array( $this, 'wc_login_google_login_button' ));
+		}
 	}
 
 	/**
@@ -31,10 +43,70 @@ class GOTL {
 				data-client_id="<?php echo esc_html( $gotl_options['googleclientid']);?>"
 				data-login_uri="<?php echo esc_url( home_url().'/?gotl-signin' );?>"
 				data-wpnonce="<?php echo $nonce;?>"
-				data-redirect_uri="<?php echo esc_url( $current_url );?>">
+				data-redirect_uri="<?php echo esc_url( $current_url );?>"
+				data-auto_select="true">
 			</div>
 			<?php
 		}
+	}
+	public function wp_login_script(){
+		?>
+		<script type="text/javascript">
+			jQuery("#wp-login-google-login-button").prependTo("#loginform");
+		</script>
+		<?php
+	}
+
+	public function shortcodes() {
+		add_shortcode( 'gotl_google_login_button', array( $this, 'gotl_google_login_button_func' ) );
+	}
+
+	public function gotl_google_login_button_func(){
+		if ( !is_user_logged_in() ) {
+			$html = '<div class="g_id_signin"
+			data-type="standard"
+			data-shape="rectangular"
+			data-theme="outline"
+			data-text="continue_with"
+			data-size="large"
+			data-logo_alignment="center">
+			</div>';
+			return $html;
+		}
+		return '';
+	}
+
+	public function wp_login_google_login_button(){
+		?>
+		<div id="wp-login-google-login-button">
+			<div class="g_id_signin"
+				data-type="standard"
+				data-shape="rectangular"
+				data-theme="outline"
+				data-text="continue_with"
+				data-size="large"
+				data-logo_alignment="center"
+				data-width="270">
+			</div>
+			<div style="text-align: center; margin: 10px 0;">Or</div>
+		</div>
+		<?php
+	}
+
+	public function wc_login_google_login_button(){
+		?>
+		<div id="wp-login-google-login-button">
+			<div class="g_id_signin"
+				data-type="standard"
+				data-shape="rectangular"
+				data-theme="outline"
+				data-text="continue_with"
+				data-size="large"
+				data-logo_alignment="center">
+			</div>
+			<div style="margin: 10px 0;">Or</div>
+		</div>
+		<?php
 	}
 
 	public function gotl_widget_endpoint(){
@@ -165,8 +237,8 @@ class GOTL {
 
 		wp_update_user($user_data);
 
-		update_user_meta($new_userid, 'gotl_profilepicture_url', esc_url_raw($payload['picture']));
-		update_user_meta($new_userid, 'nickname', $payload['given_name']);
+		update_user_meta($id, 'gotl_profilepicture_url', esc_url_raw($payload['picture']));
+		update_user_meta($id, 'nickname', $payload['given_name']);
 
 		wp_clear_auth_cookie();
 		wp_set_current_user ( $id );
