@@ -7,6 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class GOTL {
 
 	public function __construct() {
+		$gotl_options = get_option( 'gotl_admin_settings' );
+
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 50 );
 		add_action( 'wp_footer', array( $this, 'gotl_one_tap_widget' ), 50 );
 		add_action( 'login_footer', array( $this, 'gotl_one_tap_widget' ), 50 );
@@ -14,8 +16,12 @@ class GOTL {
 		add_action( 'init', array( $this, 'gotl_widget_endpoint' ) );
 		add_action( 'init', array( $this, 'shortcodes' ) );
 		add_action( 'login_enqueue_scripts', array( $this, 'enqueue_scripts' ), 1 );
-		add_action( 'login_form', array( $this, 'wp_login_google_login_button' ) ) ;
-		add_action( 'woocommerce_login_form_start', array( $this, 'wc_login_google_login_button' ));
+		if ($gotl_options && isset($gotl_options['enable_wp_login_button']) && $gotl_options['enable_wp_login_button']=="yes") {
+			add_action( 'login_form', array( $this, 'wp_login_google_login_button' ) ) ;
+		}
+		if ($gotl_options && isset($gotl_options['enable_wc_login_button']) && $gotl_options['enable_wc_login_button']=="yes") {
+			add_action( 'woocommerce_login_form_start', array( $this, 'wc_login_google_login_button' ));
+		}
 	}
 
 	/**

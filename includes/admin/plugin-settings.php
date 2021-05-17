@@ -24,7 +24,8 @@ function gotl_plugin_settings_page(){
     if ($_POST && wp_verify_nonce($_POST['_wpnonce'], 'gotl-admin-settings') ) {
         $admin_settings = array();
         $admin_settings['googleclientid'] = sanitize_text_field($_POST['googleclientid']);
-
+        $admin_settings['enable_wp_login_button'] = (isset($_POST['enable_wp_login_button'])) ? sanitize_text_field($_POST['enable_wp_login_button']) : "" ;
+        $admin_settings['enable_wc_login_button'] = (isset($_POST['enable_wc_login_button'])) ? sanitize_text_field($_POST['enable_wc_login_button']) : "" ;
         update_option('gotl_admin_settings', $admin_settings);
     }
 	include GOTL_PLUGIN_INCLUDES_PATH . '/admin/templates/plugin-settings.php';

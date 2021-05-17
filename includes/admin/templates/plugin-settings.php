@@ -5,10 +5,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 $gotl_options = get_option( 'gotl_admin_settings' );
 
-$googleclientid = "";
-if ($gotl_options) {
-	$googleclientid = $gotl_options['googleclientid'];
-}
+$googleclientid = isset($gotl_options['googleclientid'])? $gotl_options['googleclientid'] : "";
+$enable_wp_login_button = isset($gotl_options['enable_wp_login_button'])? $gotl_options['enable_wp_login_button'] : "";
+$enable_wc_login_button = isset($gotl_options['enable_wc_login_button'])? $gotl_options['enable_wc_login_button'] : "";
+
 ?>
 <style type="text/css">
 	.donate-image{
@@ -24,10 +24,20 @@ if ($gotl_options) {
 	<p>Version: <?php echo esc_html(GOTL_VERSION); ?></p>
 	<form method="POST">
 		<?php wp_nonce_field( "gotl-admin-settings" );?>
+		<table>
 		<tr>
 			<th scope="row"><label for="googleclientid">Google Client ID</label></th>
 			<td><input name="googleclientid" type="text" id="googleclientid" value="<?php echo esc_attr($googleclientid);?>" class="regular-text" /></td>
 		</tr>
+		<tr>
+			<th scope="row"><label for="enable_wp_login_button">Enable on WP LOGIN</label></th>
+			<td><input name="enable_wp_login_button" type="checkbox" id="enable_wp_login_button" value="yes" class="regular-text" <?php echo $enable_wp_login_button==="yes"? "checked":"";?>/></td>
+		</tr>
+		<tr>
+			<th scope="row"><label for="enable_wc_login_button">Enable on WooCommerce My Account</label></th>
+			<td><input name="enable_wc_login_button" type="checkbox" id="enable_wc_login_button" value="yes" class="regular-text" <?php echo $enable_wc_login_button==="yes"? "checked":"";?>/></td>
+		</tr>
+		</table>
 		<?php submit_button(); ?>
 	</form>
 	<div class="donation-group">
