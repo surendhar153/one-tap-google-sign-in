@@ -15,6 +15,7 @@ class GOTL {
 		add_action( 'init', array( $this, 'shortcodes' ) );
 		add_action( 'login_enqueue_scripts', array( $this, 'enqueue_scripts' ), 1 );
 		add_action( 'login_form', array( $this, 'wp_login_google_login_button' ) ) ;
+		add_action( 'woocommerce_login_form_start', array( $this, 'wc_login_google_login_button' ));
 	}
 
 	/**
@@ -70,7 +71,6 @@ class GOTL {
 	}
 
 	public function wp_login_google_login_button(){
-		//Adding the text
 		?>
 		<div id="wp-login-google-login-button">
 			<div class="g_id_signin"
@@ -83,6 +83,22 @@ class GOTL {
 				data-width="270">
 			</div>
 			<div style="text-align: center; margin: 10px 0;">Or</div>
+		</div>
+		<?php
+	}
+
+	public function wc_login_google_login_button(){
+		?>
+		<div id="wp-login-google-login-button">
+			<div class="g_id_signin"
+				data-type="standard"
+				data-shape="rectangular"
+				data-theme="outline"
+				data-text="continue_with"
+				data-size="large"
+				data-logo_alignment="center">
+			</div>
+			<div style="margin: 10px 0;">Or</div>
 		</div>
 		<?php
 	}

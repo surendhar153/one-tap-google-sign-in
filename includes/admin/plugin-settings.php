@@ -29,3 +29,15 @@ function gotl_plugin_settings_page(){
     }
 	include GOTL_PLUGIN_INCLUDES_PATH . '/admin/templates/plugin-settings.php';
 }
+
+add_filter( 'plugin_action_links_' . GOTL_PLUGIN_BASENAME, 'gotl_plugin_action_links' );
+
+function gotl_plugin_action_links( $actions ) {
+    $url = esc_url( add_query_arg(
+		'page',
+		'google-one-tap-login-settings',
+		get_admin_url() . 'admin.php'
+	) );
+   $actions[] = '<a href="'. $url .'">Settings</a>';
+   return $actions;
+}
