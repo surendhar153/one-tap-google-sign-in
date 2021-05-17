@@ -5,7 +5,7 @@ Plugin URI: https://bit.ly/one-tap-google-sign-in-for-wordpress
 Description: One Tap Google Sign in for wordpress
 Author: S.E.Surendhar
 Author URI: https://bit.ly/surendhar-linkedin
-Version: 1.1.5
+Version: 1.2
 */
 
 // If this file is called directly, abort.
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GOTL_VERSION', '1.1.2' );
+define( 'GOTL_VERSION', '1.2' );
 define( 'GOTL_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'GOTL_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
 define( 'GOTL_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
