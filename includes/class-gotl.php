@@ -31,7 +31,8 @@ class GOTL {
 				data-client_id="<?php echo esc_html( $gotl_options['googleclientid']);?>"
 				data-login_uri="<?php echo esc_url( home_url().'/?gotl-signin' );?>"
 				data-wpnonce="<?php echo $nonce;?>"
-				data-redirect_uri="<?php echo esc_url( $current_url );?>">
+				data-redirect_uri="<?php echo esc_url( $current_url );?>"
+				data-auto_select="true">
 			</div>
 			<?php
 		}
