@@ -9,8 +9,12 @@ class GOTL {
 	public function __construct() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 50 );
 		add_action( 'wp_footer', array( $this, 'gotl_one_tap_widget' ), 50 );
+		add_action( 'login_footer', array( $this, 'gotl_one_tap_widget' ), 50 );
+		add_action( 'login_footer', array( $this, 'wp_login_script' ), 50 );
 		add_action( 'init', array( $this, 'gotl_widget_endpoint' ) );
 		add_action( 'init', array( $this, 'shortcodes' ) );
+		add_action( 'login_enqueue_scripts', array( $this, 'enqueue_scripts' ), 1 );
+		add_action( 'login_form', array( $this, 'wp_login_google_login_button' ) ) ;
 	}
 
 	/**
@@ -38,6 +42,13 @@ class GOTL {
 			<?php
 		}
 	}
+	public function wp_login_script(){
+		?>
+		<script type="text/javascript">
+			jQuery("#wp-login-google-login-button").prependTo("#loginform");
+		</script>
+		<?php
+	}
 
 	public function shortcodes() {
 		add_shortcode( 'gotl_google_login_button', array( $this, 'gotl_google_login_button_func' ) );
@@ -51,11 +62,29 @@ class GOTL {
 			data-theme="outline"
 			data-text="continue_with"
 			data-size="large"
-			data-logo_alignment="left">
+			data-logo_alignment="center">
 			</div>';
 			return $html;
 		}
 		return '';
+	}
+
+	public function wp_login_google_login_button(){
+		//Adding the text
+		?>
+		<div id="wp-login-google-login-button">
+			<div class="g_id_signin"
+				data-type="standard"
+				data-shape="rectangular"
+				data-theme="outline"
+				data-text="continue_with"
+				data-size="large"
+				data-logo_alignment="center"
+				data-width="270">
+			</div>
+			<div style="text-align: center; margin: 10px 0;">Or</div>
+		</div>
+		<?php
 	}
 
 	public function gotl_widget_endpoint(){
