@@ -165,8 +165,8 @@ class GOTL {
 
 		wp_update_user($user_data);
 
-		update_user_meta($new_userid, 'gotl_profilepicture_url', esc_url_raw($payload['picture']));
-		update_user_meta($new_userid, 'nickname', $payload['given_name']);
+		update_user_meta($id, 'gotl_profilepicture_url', esc_url_raw($payload['picture']));
+		update_user_meta($id, 'nickname', $payload['given_name']);
 
 		wp_clear_auth_cookie();
 		wp_set_current_user ( $id );
