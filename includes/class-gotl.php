@@ -28,7 +28,7 @@ class GOTL {
 	 * Enqueuing Scripts
 	 */
 	public function enqueue_scripts() {
-		wp_register_script( 'one-tap-client-js', 'https://accounts.google.com/gsi/client', array(), false, false );
+		wp_register_script( 'one-tap-client-js', 'https://accounts.google.com/gsi/client', array(), false, true );
 		wp_enqueue_script( 'one-tap-client-js' );
 	}
 
