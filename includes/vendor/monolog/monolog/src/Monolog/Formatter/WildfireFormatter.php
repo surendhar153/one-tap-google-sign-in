@@ -19,15 +19,11 @@ use Monolog\Logger;
  * @author Eric Clemmons (@ericclemmons) <eric@uxdriven.com>
  * @author Christophe Coevoet <stof@notk.org>
  * @author Kirill chEbba Chebunin <iam@chebba.org>
- *
- * @phpstan-import-type Level from \Monolog\Logger
  */
 class WildfireFormatter extends NormalizerFormatter
 {
     /**
      * Translates Monolog log levels to Wildfire levels.
-     *
-     * @var array<Level, string>
      */
     private $logLevels = [
         Logger::DEBUG     => 'LOG',
@@ -41,20 +37,7 @@ class WildfireFormatter extends NormalizerFormatter
     ];
 
     /**
-     * @param string|null $dateFormat The format of the timestamp: one supported by DateTime::format
-     */
-    public function __construct(?string $dateFormat = null)
-    {
-        parent::__construct($dateFormat);
-
-        // http headers do not like non-ISO-8559-1 characters
-        $this->removeJsonEncodeOption(JSON_UNESCAPED_UNICODE);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function format(array $record): string
     {
@@ -69,7 +52,6 @@ class WildfireFormatter extends NormalizerFormatter
             unset($record['extra']['line']);
         }
 
-        /** @var mixed[] $record */
         $record = $this->normalize($record);
         $message = ['message' => $record['message']];
         $handleError = false;
@@ -114,9 +96,7 @@ class WildfireFormatter extends NormalizerFormatter
     }
 
     /**
-     * {@inheritDoc}
-     *
-     * @phpstan-return never
+     * {@inheritdoc}
      */
     public function formatBatch(array $records)
     {
@@ -124,9 +104,8 @@ class WildfireFormatter extends NormalizerFormatter
     }
 
     /**
-     * {@inheritDoc}
-     *
-     * @return null|scalar|array<array|scalar|null>|object
+     * {@inheritdoc}
+     * @suppress PhanTypeMismatchReturn
      */
     protected function normalize($data, int $depth = 0)
     {

@@ -44,7 +44,7 @@ class HandlerWrapper implements HandlerInterface, ProcessableHandlerInterface, F
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function isHandling(array $record): bool
     {
@@ -52,7 +52,7 @@ class HandlerWrapper implements HandlerInterface, ProcessableHandlerInterface, F
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function handle(array $record): bool
     {
@@ -60,7 +60,7 @@ class HandlerWrapper implements HandlerInterface, ProcessableHandlerInterface, F
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function handleBatch(array $records): void
     {
@@ -68,7 +68,7 @@ class HandlerWrapper implements HandlerInterface, ProcessableHandlerInterface, F
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function close(): void
     {
@@ -76,7 +76,7 @@ class HandlerWrapper implements HandlerInterface, ProcessableHandlerInterface, F
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function pushProcessor(callable $callback): HandlerInterface
     {
@@ -90,7 +90,7 @@ class HandlerWrapper implements HandlerInterface, ProcessableHandlerInterface, F
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function popProcessor(): callable
     {
@@ -102,21 +102,19 @@ class HandlerWrapper implements HandlerInterface, ProcessableHandlerInterface, F
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setFormatter(FormatterInterface $formatter): HandlerInterface
     {
         if ($this->handler instanceof FormattableHandlerInterface) {
             $this->handler->setFormatter($formatter);
-
-            return $this;
         }
 
         throw new \LogicException('The wrapped handler does not implement ' . FormattableHandlerInterface::class);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getFormatter(): FormatterInterface
     {
@@ -130,7 +128,7 @@ class HandlerWrapper implements HandlerInterface, ProcessableHandlerInterface, F
     public function reset()
     {
         if ($this->handler instanceof ResettableInterface) {
-            $this->handler->reset();
+            return $this->handler->reset();
         }
     }
 }

@@ -22,12 +22,13 @@ use Monolog\Formatter\LineFormatter;
 trait FormattableHandlerTrait
 {
     /**
-     * @var ?FormatterInterface
+     * @var FormatterInterface
      */
     protected $formatter;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
+     * @suppress PhanTypeMismatchReturn
      */
     public function setFormatter(FormatterInterface $formatter): HandlerInterface
     {
@@ -37,7 +38,7 @@ trait FormattableHandlerTrait
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getFormatter(): FormatterInterface
     {

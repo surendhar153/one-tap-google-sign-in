@@ -41,12 +41,14 @@ class SqsHandler extends AbstractProcessingHandler
     }
 
     /**
-     * {@inheritDoc}
+     * Writes the record down to the log of the implementing handler.
+     *
+     * @param array $record
      */
     protected function write(array $record): void
     {
         if (!isset($record['formatted']) || 'string' !== gettype($record['formatted'])) {
-            throw new \InvalidArgumentException('SqsHandler accepts only formatted records as a string' . Utils::getRecordMessageForException($record));
+            throw new \InvalidArgumentException('SqsHandler accepts only formatted records as a string');
         }
 
         $messageBody = $record['formatted'];

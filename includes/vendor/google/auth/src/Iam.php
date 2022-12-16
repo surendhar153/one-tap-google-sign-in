@@ -20,7 +20,6 @@ namespace Google\Auth;
 use Google\Auth\HttpHandler\HttpClientCache;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use GuzzleHttp\Psr7;
-use GuzzleHttp\Psr7\Utils;
 
 /**
  * Tools for using the IAM API.
@@ -57,7 +56,7 @@ class Iam
      * @param string $email The service account email.
      * @param string $accessToken An access token from the service account.
      * @param string $stringToSign The string to be signed.
-     * @param array<string> $delegates [optional] A list of service account emails to
+     * @param array $delegates [optional] A list of service account emails to
      *        add to the delegate chain. If omitted, the value of `$email` will
      *        be used.
      * @return string The signed string, base64-encoded.
@@ -89,7 +88,7 @@ class Iam
             'POST',
             $uri,
             $headers,
-            Utils::streamFor(json_encode($body))
+            Psr7\stream_for(json_encode($body))
         );
 
         $res = $httpHandler($request);

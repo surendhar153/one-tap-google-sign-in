@@ -41,7 +41,8 @@ class PsrLogMessageProcessor implements ProcessorInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @param  array $record
+     * @return array
      */
     public function __invoke(array $record): array
     {
@@ -69,7 +70,7 @@ class PsrLogMessageProcessor implements ProcessorInterface
             } elseif (is_object($val)) {
                 $replacements[$placeholder] = '[object '.Utils::getClass($val).']';
             } elseif (is_array($val)) {
-                $replacements[$placeholder] = 'array'.Utils::jsonEncode($val, null, true);
+                $replacements[$placeholder] = 'array'.@json_encode($val);
             } else {
                 $replacements[$placeholder] = '['.gettype($val).']';
             }
