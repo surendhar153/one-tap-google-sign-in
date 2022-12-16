@@ -3,9 +3,9 @@ Contributors: surendhar153
 Donate link: https://bit.ly/paypal-surendhar153
 Tags: google, one tap, social login, login, signup, yolo, you only login once
 Requires at least: 5.1
-Tested up to: 5.7
-Requires PHP: 7.0
-Stable tag: 1.2
+Tested up to: 6.1.1
+Requires PHP: 7.2
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -50,6 +50,10 @@ Automatic sign-in is currently not enabled. You can look for this feature in the
 2. WP-Login Page
  
 == Changelog ==
+
+= 1.3 =
+* Something Awesome
+* Updated google/apiclient to 2.12.6
 
 = 1.1.2 =
 * Updating User Firstname Lastname and getting profile picture for future use
