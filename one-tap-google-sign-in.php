@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: One Tap Google Sign in
-Plugin URI: https://bit.ly/one-tap-google-sign-in-for-wordpress
+Plugin URI: https://github.com/surendhar153/one-tap-google-sign-in
 Description: One Tap Google Sign in for wordpress
-Author: S.E.Surendhar
-Author URI: https://bit.ly/surendhar-linkedin
+Author: Surendhar
+Author URI: https://www.linkedin.com/in/surendhar153/
 Version: 1.3
 */
 
