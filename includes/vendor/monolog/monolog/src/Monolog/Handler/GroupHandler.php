@@ -18,16 +18,12 @@ use Monolog\ResettableInterface;
  * Forwards records to multiple handlers
  *
  * @author Lenar Lõhmus <lenar@city.ee>
- *
- * @phpstan-import-type Record from \Monolog\Logger
  */
 class GroupHandler extends Handler implements ProcessableHandlerInterface, ResettableInterface
 {
     use ProcessableHandlerTrait;
 
-    /** @var HandlerInterface[] */
     protected $handlers;
-    /** @var bool */
     protected $bubble;
 
     /**
@@ -47,7 +43,7 @@ class GroupHandler extends Handler implements ProcessableHandlerInterface, Reset
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function isHandling(array $record): bool
     {
@@ -61,12 +57,11 @@ class GroupHandler extends Handler implements ProcessableHandlerInterface, Reset
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function handle(array $record): bool
     {
         if ($this->processors) {
-            /** @var Record $record */
             $record = $this->processRecord($record);
         }
 
@@ -78,7 +73,7 @@ class GroupHandler extends Handler implements ProcessableHandlerInterface, Reset
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function handleBatch(array $records): void
     {
@@ -87,7 +82,6 @@ class GroupHandler extends Handler implements ProcessableHandlerInterface, Reset
             foreach ($records as $record) {
                 $processed[] = $this->processRecord($record);
             }
-            /** @var Record[] $records */
             $records = $processed;
         }
 
@@ -117,14 +111,12 @@ class GroupHandler extends Handler implements ProcessableHandlerInterface, Reset
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setFormatter(FormatterInterface $formatter): HandlerInterface
     {
         foreach ($this->handlers as $handler) {
-            if ($handler instanceof FormattableHandlerInterface) {
-                $handler->setFormatter($formatter);
-            }
+            $handler->setFormatter($formatter);
         }
 
         return $this;

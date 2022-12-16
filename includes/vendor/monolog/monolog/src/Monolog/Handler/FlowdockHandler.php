@@ -26,8 +26,6 @@ use Monolog\Formatter\FormatterInterface;
  *
  * @author Dominik Liebler <liebler.dominik@gmail.com>
  * @see https://www.flowdock.com/api/push
- *
- * @phpstan-import-type FormattedRecord from AbstractProcessingHandler
  */
 class FlowdockHandler extends SocketHandler
 {
@@ -37,37 +35,23 @@ class FlowdockHandler extends SocketHandler
     protected $apiToken;
 
     /**
+     * @param string|int $level  The minimum logging level at which this handler will be triggered
+     * @param bool       $bubble Whether the messages that are handled can bubble up the stack or not
+     *
      * @throws MissingExtensionException if OpenSSL is missing
      */
-    public function __construct(
-        string $apiToken,
-        $level = Logger::DEBUG,
-        bool $bubble = true,
-        bool $persistent = false,
-        float $timeout = 0.0,
-        float $writingTimeout = 10.0,
-        ?float $connectionTimeout = null,
-        ?int $chunkSize = null
-    ) {
+    public function __construct(string $apiToken, $level = Logger::DEBUG, bool $bubble = true)
+    {
         if (!extension_loaded('openssl')) {
             throw new MissingExtensionException('The OpenSSL PHP extension is required to use the FlowdockHandler');
         }
 
-        parent::__construct(
-            'ssl://api.flowdock.com:443',
-            $level,
-            $bubble,
-            $persistent,
-            $timeout,
-            $writingTimeout,
-            $connectionTimeout,
-            $chunkSize
-        );
+        parent::__construct('ssl://api.flowdock.com:443', $level, $bubble);
         $this->apiToken = $apiToken;
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setFormatter(FormatterInterface $formatter): HandlerInterface
     {
@@ -87,7 +71,9 @@ class FlowdockHandler extends SocketHandler
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
+     *
+     * @param array $record
      */
     protected function write(array $record): void
     {
@@ -97,7 +83,7 @@ class FlowdockHandler extends SocketHandler
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function generateDataStream(array $record): string
     {
@@ -108,8 +94,6 @@ class FlowdockHandler extends SocketHandler
 
     /**
      * Builds the body of API call
-     *
-     * @phpstan-param FormattedRecord $record
      */
     private function buildContent(array $record): string
     {
