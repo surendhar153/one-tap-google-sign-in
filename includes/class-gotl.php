@@ -44,7 +44,7 @@ class GOTL {
 				data-login_uri="<?php echo esc_url( home_url().'/?gotl-signin' );?>"
 				data-wpnonce="<?php echo $nonce;?>"
 				data-redirect_uri="<?php echo esc_url( $current_url );?>"
-				data-auto_select="true">
+				data-auto_select="<?php echo ($gotl_options['enable_auto_login'] == "yes") ? "true" : "false"; ?>">
 			</div>
 			<?php
 		}
