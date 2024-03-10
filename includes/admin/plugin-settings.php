@@ -26,6 +26,7 @@ function gotl_plugin_settings_page(){
         $admin_settings['googleclientid'] = sanitize_text_field($_POST['googleclientid']);
         $admin_settings['enable_wp_login_button'] = (isset($_POST['enable_wp_login_button'])) ? sanitize_text_field($_POST['enable_wp_login_button']) : "" ;
         $admin_settings['enable_wc_login_button'] = (isset($_POST['enable_wc_login_button'])) ? sanitize_text_field($_POST['enable_wc_login_button']) : "" ;
+        $admin_settings['enable_auto_login'] = (isset($_POST['enable_auto_login'])) ? sanitize_text_field($_POST['enable_auto_login']) : "" ;
         update_option('gotl_admin_settings', $admin_settings);
     }
 	include GOTL_PLUGIN_INCLUDES_PATH . '/admin/templates/plugin-settings.php';
