@@ -36,15 +36,17 @@ class GOTL {
 		$nonce = wp_create_nonce( 'gotl-login-widget' );
 		global $wp;
 		$current_url = home_url( add_query_arg( array(), $wp->request ) );
+		$current_url = add_query_arg( 'ts', time(), $current_url );
 		if ( !is_user_logged_in() ) {
 			$gotl_options = get_option( 'gotl_admin_settings' );
 			?>
 			<div id="g_id_onload"
 				data-client_id="<?php echo esc_html( $gotl_options['googleclientid']);?>"
+				data-auto_select="<?php echo ($gotl_options['enable_auto_login'] == "yes") ? "true" : "false"; ?>"
 				data-login_uri="<?php echo esc_url( home_url().'/?gotl-signin' );?>"
 				data-wpnonce="<?php echo $nonce;?>"
 				data-redirect_uri="<?php echo esc_url( $current_url );?>"
-				data-auto_select="<?php echo ($gotl_options['enable_auto_login'] == "yes") ? "true" : "false"; ?>">
+				data-use_fedcm_for_prompt="true">
 			</div>
 			<?php
 		}
@@ -78,15 +80,15 @@ class GOTL {
 
 	public function wp_login_google_login_button(){
 		?>
-		<div id="wp-login-google-login-button">
+		<div id="wp-login-google-login-button" style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
 			<div class="g_id_signin"
 				data-type="standard"
-				data-shape="rectangular"
-				data-theme="outline"
-				data-text="continue_with"
+				data-theme="filled_black"
 				data-size="large"
-				data-logo_alignment="center"
-				data-width="270">
+				data-text="continue_with"
+				data-shape="pill"
+				data-locale="en_US"
+				data-use_fedcm_for_prompt="true">
 			</div>
 			<div style="text-align: center; margin: 10px 0;">Or</div>
 		</div>
@@ -95,14 +97,15 @@ class GOTL {
 
 	public function wc_login_google_login_button(){
 		?>
-		<div id="wp-login-google-login-button">
+		<div id="wp-login-google-login-button" style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
 			<div class="g_id_signin"
 				data-type="standard"
-				data-shape="rectangular"
-				data-theme="outline"
-				data-text="continue_with"
+				data-theme="filled_black"
 				data-size="large"
-				data-logo_alignment="center">
+				data-text="continue_with"
+				data-shape="pill"
+				data-locale="en_US"
+				data-use_fedcm_for_prompt="true">
 			</div>
 			<div style="margin: 10px 0;">Or</div>
 		</div>
@@ -199,7 +202,7 @@ class GOTL {
 			$suffix++;
 		}
 		$new_userid = register_new_user( sanitize_user($username), $payload['email'] );
-		
+
 		if (is_wp_error($new_userid)) {
 			$errors->add( 'registration_failed', __( '<strong>Error</strong>: Registration Failed' ) );
 		}

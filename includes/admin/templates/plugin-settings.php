@@ -50,7 +50,7 @@ $enable_auto_login = isset($gotl_options['enable_auto_login'])? $gotl_options['e
 	<div class="donation-group">
 		<h3>Coffee is always a good idea</h3>
 		<p>
-			<a href="https://bit.ly/paypal-surendhar153" class="button button-primary">Donate</a>
+			<a href="https://www.buymeacoffee.com/surendhar153" class="button button-primary">Donate</a>
 		</p>
 		<img class="donate-image" src="<?php echo GOTL_PLUGIN_DIR_URL.'/assets/images/get-me-a-coffee.png'; ?>">
 	</div>
