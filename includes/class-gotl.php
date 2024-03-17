@@ -36,6 +36,7 @@ class GOTL {
 		$nonce = wp_create_nonce( 'gotl-login-widget' );
 		global $wp;
 		$current_url = home_url( add_query_arg( array(), $wp->request ) );
+		$current_url = add_query_arg( 'ts', time(), $current_url );
 		if ( !is_user_logged_in() ) {
 			$gotl_options = get_option( 'gotl_admin_settings' );
 			?>
@@ -201,7 +202,7 @@ class GOTL {
 			$suffix++;
 		}
 		$new_userid = register_new_user( sanitize_user($username), $payload['email'] );
-		
+
 		if (is_wp_error($new_userid)) {
 			$errors->add( 'registration_failed', __( '<strong>Error</strong>: Registration Failed' ) );
 		}
