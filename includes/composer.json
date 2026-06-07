@@ -1,6 +1,6 @@
 {
     "require": {
-        "google/apiclient": "^2.15.0"
+        "google/apiclient": "^2.19"
     },
     "scripts": {
         "post-update-cmd": "Google_Task_Composer::cleanup"
