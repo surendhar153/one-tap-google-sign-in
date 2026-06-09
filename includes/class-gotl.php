@@ -90,7 +90,7 @@ class GOTL {
 				data-locale="en_US"
 				data-use_fedcm_for_prompt="true">
 			</div>
-			<div style="text-align: center; margin: 10px 0;">Or</div>
+			<div style="text-align: center; margin: 10px 0;"><?php echo __( 'Or', 'google-one-tap-login') ?></div>
 		</div>
 		<?php
 	}
@@ -107,7 +107,7 @@ class GOTL {
 				data-locale="en_US"
 				data-use_fedcm_for_prompt="true">
 			</div>
-			<div style="margin: 10px 0;">Or</div>
+			<div style="margin: 10px 0;"><?php echo __( 'Or', 'google-one-tap-login') ?></div>
 		</div>
 		<?php
 	}
