@@ -9,6 +9,7 @@ $googleclientid = isset($gotl_options['googleclientid'])? $gotl_options['googlec
 $enable_wp_login_button = isset($gotl_options['enable_wp_login_button'])? $gotl_options['enable_wp_login_button'] : "";
 $enable_wc_login_button = isset($gotl_options['enable_wc_login_button'])? $gotl_options['enable_wc_login_button'] : "";
 $enable_auto_login = isset($gotl_options['enable_auto_login'])? $gotl_options['enable_auto_login'] : "";
+$enable_auto_prompt = isset($gotl_options['enable_auto_prompt'])? $gotl_options['enable_auto_prompt'] : "";
 ?>
 <style type="text/css">
 	form.gotl-admin-settings-form table th {
@@ -43,6 +44,10 @@ $enable_auto_login = isset($gotl_options['enable_auto_login'])? $gotl_options['e
 		<tr>
 			<th scope="row"><label for="enable_auto_login">Enable Auto Login</label></th>
 			<td><input name="enable_auto_login" type="checkbox" id="enable_auto_login" value="yes" class="regular-text" <?php echo $enable_auto_login==="yes"? "checked":"";?>/></td>
+		</tr>
+		<tr>
+			<th scope="row"><label for="enable_auto_prompt">Enable Auto Prompt</label></th>
+			<td><input name="enable_auto_prompt" type="checkbox" id="enable_auto_prompt" value="yes" class="regular-text" <?php echo $enable_auto_prompt==="yes"? "checked":"";?>/></td>
 		</tr>
 		</table>
 		<?php submit_button(); ?>

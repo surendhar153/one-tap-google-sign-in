@@ -43,6 +43,7 @@ class GOTL {
 			<div id="g_id_onload"
 				data-client_id="<?php echo esc_html( $gotl_options['googleclientid']);?>"
 				data-auto_select="<?php echo ($gotl_options['enable_auto_login'] == "yes") ? "true" : "false"; ?>"
+				data-auto_prompt="<?php echo ($gotl_options['enable_auto_prompt'] == "yes") ? "true" : "false"; ?>"
 				data-login_uri="<?php echo esc_url( home_url().'/?gotl-signin' );?>"
 				data-wpnonce="<?php echo $nonce;?>"
 				data-redirect_uri="<?php echo esc_url( $current_url );?>"
@@ -90,7 +91,7 @@ class GOTL {
 				data-locale="en_US"
 				data-use_fedcm_for_prompt="true">
 			</div>
-			<div style="text-align: center; margin: 10px 0;">Or</div>
+			<div style="text-align: center; margin: 10px 0;"><?php echo esc_html__( 'Or', 'google-one-tap-login' ); ?></div>
 		</div>
 		<?php
 	}
@@ -107,7 +108,7 @@ class GOTL {
 				data-locale="en_US"
 				data-use_fedcm_for_prompt="true">
 			</div>
-			<div style="margin: 10px 0;">Or</div>
+			<div style="margin: 10px 0;"><?php echo esc_html__( 'Or', 'google-one-tap-login' ); ?></div>
 		</div>
 		<?php
 	}
